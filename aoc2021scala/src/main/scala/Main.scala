@@ -77,6 +77,11 @@ object Main extends App {
   println(s"13-1 in: ${exec(Day13.part1, "input", "802")}")
   println(s"13-2 ex: ${exec(Day13.part2, "input-ex")}")
   println(s"13-2 in: ${exec(Day13.part2, "input")}")
+  println()
+  println(s"14-1 ex: ${exec(Day14.part1, "input-ex", "1588")}")
+  println(s"14-1 in: ${exec(Day14.part1, "input", "2549")}")
+  println(s"14-2 ex: ${exec(Day14.part2, "input-ex", "2188189693529")}")
+  println(s"14-2 in: ${exec(Day14.part2, "input", "2516901104210")}")
 
   // println()
   // println(s"06-2 (slow): ${exec(Day06.part2slow, "input", "1728611055389")}")
