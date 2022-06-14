@@ -8,6 +8,7 @@ mod day04;
 mod day05;
 mod day06;
 mod day07;
+mod day08;
 
 static DAYS_INFO: &[(
     for<'r> fn(&'r str) -> i64,
@@ -80,6 +81,15 @@ static DAYS_INFO: &[(
         Some(82372),
         &[Some(4), None, None, None],
         &[Some(32), Some(126), None, None],
+    ),
+    (
+        day08::day08a,
+        day08::day08b,
+        1,
+        Some(1451),
+        Some(1160),
+        &[Some(5), None, None, None],
+        &[Some(8), None, None, None],
     ),
 ];
 
@@ -171,7 +181,7 @@ fn full_run(last_day: i32) {
 
 fn main() {
     println!();
-    full_run(7);
-    // run_day(7);
-    // println!("{}", day07::day07a(&get_input(7, "-ex01")));
+    full_run(8);
+    // run_day(8);
+    // println!("{}", day08::day08a(&get_input(8, "-ex01")));
 }
