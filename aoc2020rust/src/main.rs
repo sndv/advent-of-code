@@ -1,5 +1,6 @@
 use std::fs;
 use std::option::Option;
+use std::time;
 
 mod day01;
 mod day02;
@@ -25,7 +26,14 @@ fn get_input(day: usize, input_n: usize) -> String {
 
 fn execute(day: usize, part: char, input_num: usize, expected: Option<i64>, run: fn(&str) -> i64) {
     let input = get_input(day, input_num);
+    let start = time::Instant::now();
     let result = run(&input);
+    let elapsed_str = match start.elapsed().as_nanos() {
+        en if en < 1_000 => format!("{}ns", en),
+        en if en < 1_000_000 => format!("{:.2}μs", en as f64 / 1_000.0),
+        en if en < 1_000_000_000 => format!("{:.2}ms", en as f64 / 1_000_000.0),
+        en => format!("{:.2}s", en as f64 / 1_000_000_000.0),
+    };
     let result_suffix = match expected {
         Some(answer) => {
             if result == answer {
@@ -41,8 +49,8 @@ fn execute(day: usize, part: char, input_num: usize, expected: Option<i64>, run:
         in_n => format!("ex{:02}", in_n),
     };
     println!(
-        "Day{:02}{} {}: {}{}",
-        day, part, input_str, result, result_suffix
+        "Day{:02}{} {}: {} ({}){}",
+        day, part, input_str, result, elapsed_str, result_suffix
     );
 }
 
