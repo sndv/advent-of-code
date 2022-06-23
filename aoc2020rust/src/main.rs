@@ -28,16 +28,19 @@ fn get_input(day: usize, input_n: usize) -> String {
     fs::read_to_string(input_filename).expect(&missing_msg)
 }
 
-fn execute(day: usize, part: char, input_num: usize, expected: Option<i64>, run: fn(&str) -> i64) {
-    let input = get_input(day, input_num);
-    let start = time::Instant::now();
-    let result = run(&input);
-    let elapsed_str = match start.elapsed().as_nanos() {
+fn format_duration(nanos: u128) -> String {
+    match nanos {
         en if en < 1_000 => format!("{}ns", en),
         en if en < 1_000_000 => format!("{:.2}μs", en as f64 / 1_000.0),
         en if en < 1_000_000_000 => format!("{:.2}ms", en as f64 / 1_000_000.0),
         en => format!("{:.2}s", en as f64 / 1_000_000_000.0),
-    };
+    }
+}
+fn execute(day: usize, part: char, input_num: usize, expected: Option<i64>, run: fn(&str) -> i64) {
+    let input = get_input(day, input_num);
+    let start = time::Instant::now();
+    let result = run(&input);
+    let duration = start.elapsed().as_nanos();
     let result_suffix = match expected {
         Some(answer) => {
             if result == answer {
@@ -54,11 +57,16 @@ fn execute(day: usize, part: char, input_num: usize, expected: Option<i64>, run:
     };
     println!(
         "Day{:02}{} {}: {} ({}){}",
-        day, part, input_str, result, elapsed_str, result_suffix
+        day,
+        part,
+        input_str,
+        result,
+        format_duration(duration),
+        result_suffix
     );
 }
 
-fn full_run() {
+fn run_all_days() {
     println!();
     execute(1, 'a', 1, Some(514579), day01::day01a);
     execute(1, 'a', 0, Some(842016), day01::day01a);
@@ -170,6 +178,13 @@ fn full_run() {
     execute(15, 'b', 0, Some(2159626), day15::day15b);
 }
 
+fn full_run() {
+    let start = time::Instant::now();
+    run_all_days();
+    let duration = start.elapsed().as_nanos();
+    println!();
+    println!("Total time: {}", format_duration(duration));
+}
 fn main() {
     full_run();
 }
