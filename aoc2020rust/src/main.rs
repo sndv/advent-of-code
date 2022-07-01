@@ -17,6 +17,7 @@ mod day12;
 mod day13;
 mod day14;
 mod day15;
+mod day16;
 
 fn get_input(day: usize, input_n: usize) -> String {
     let file_suffix = match input_n {
@@ -176,6 +177,14 @@ fn run_all_days() {
     execute(15, 'b', 6, Some(18), day15::day15b);
     execute(15, 'b', 7, Some(362), day15::day15b);
     execute(15, 'b', 0, Some(2159626), day15::day15b);
+
+    println!();
+    execute(16, 'a', 1, Some(71), day16::day16a);
+    execute(16, 'a', 0, Some(20091), day16::day16a);
+    execute(16, 'b', 2, Some(1716), |input| day16::day16b(input, ""));
+    execute(16, 'b', 0, Some(2325343130651), |input| {
+        day16::day16b(input, "departure")
+    });
 }
 
 fn full_run() {
