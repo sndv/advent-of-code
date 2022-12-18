@@ -2,9 +2,9 @@ import os
 import re
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
-pos_str, steps_str = input.split("\n\n")
+pos_str, steps_str = puzzle_input.split("\n\n")
 pos_lines = pos_str.splitlines()
 col_num = len(pos_lines[-1].split())
 steps = steps_str.splitlines()

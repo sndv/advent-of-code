@@ -1,14 +1,14 @@
 import os
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
 
 def solve(rope_len):
     rope = [[0, 0] for _ in range(rope_len)]
     visited = set()
     ft = lambda n: 0 if n == 0 else n // abs(n)
-    for line in input.splitlines():
+    for line in puzzle_input.splitlines():
         d, n = line.split()
         n = int(n)
         for _ in range(n):

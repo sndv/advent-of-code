@@ -2,12 +2,12 @@ import os
 from collections import defaultdict
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
 path = []
 sizes = defaultdict(int)
 
-for line in input.splitlines():
+for line in puzzle_input.splitlines():
     if line.startswith("$"):
         if line.split()[1] == "cd":
             match line.split()[2]:

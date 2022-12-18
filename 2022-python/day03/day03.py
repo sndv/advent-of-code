@@ -1,9 +1,9 @@
 import os
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
-lines = [line.strip() for line in input.splitlines()]
+lines = [line.strip() for line in puzzle_input.splitlines()]
 
 
 def score(ch):

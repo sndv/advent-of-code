@@ -1,10 +1,10 @@
 import os
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
 
-trees = list(list(map(int, list(ln))) for ln in input.splitlines())
+trees = list(list(map(int, list(ln))) for ln in puzzle_input.splitlines())
 C = len(trees[0])
 R = len(trees)
 

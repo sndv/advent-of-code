@@ -1,15 +1,15 @@
 import os
 
 with open(os.path.join(os.path.dirname(__file__), "input")) as fd:
-    input = fd.read()
+    puzzle_input = fd.read()
 
-input = "\n\n" + input.replace("addx", "\naddx")
+puzzle_input = "\n\n" + puzzle_input.replace("addx", "\naddx")
 
 reg = 1
 part1 = 0
 part2 = ""
 
-for i, line in enumerate(input.splitlines()):
+for i, line in enumerate(puzzle_input.splitlines()):
     if line.startswith("addx"):
         reg += int(line.split()[1])
     if i % 40 == 20:
