@@ -1,7 +1,7 @@
 import scala.io.Source
 import scala.annotation.tailrec
 
-class BingoBoard(boardNumbers: List[Int]) {
+class BingoBoard(boardNumbers: List[Int]):
 
   final val WIN_LIST = List(
     List(0, 1, 2, 3, 4),
@@ -13,7 +13,7 @@ class BingoBoard(boardNumbers: List[Int]) {
     List(1, 6, 11, 16, 21),
     List(2, 7, 12, 17, 22),
     List(3, 8, 13, 18, 23),
-    List(4, 9, 14, 19, 24)
+    List(4, 9, 14, 19, 24),
   )
 
   def isWin(pastNumbers: List[Int]): Boolean =
@@ -22,27 +22,25 @@ class BingoBoard(boardNumbers: List[Int]) {
       .reduce(_ || _)
 
   def unmarkedSum(pastNumbers: List[Int]): Int =
-    boardNumbers.map(n => if (pastNumbers.contains(n)) 0 else n).sum
+    boardNumbers.map(n => if pastNumbers.contains(n) then 0 else n).sum
 
   def prnt(): Unit =
     println(boardNumbers)
 
-}
-
-object Day04 {
+object Day04:
 
   final private val INPUT_DIR = "input/day04/"
 
   @tailrec
   def round(
       cBoards: List[BingoBoard],
-      cNumbers: List[Int]
+      cNumbers: List[Int],
   ): Option[BingoBoard] =
-    if (cBoards.isEmpty) None
-    else if (cBoards.head.isWin(cNumbers)) Some(cBoards.head)
+    if cBoards.isEmpty then None
+    else if cBoards.head.isWin(cNumbers) then Some(cBoards.head)
     else round(cBoards.tail, cNumbers)
 
-  def part1(input: String): Int = {
+  def part1(input: String): Int =
     val lines = Source
       .fromFile(INPUT_DIR + input)
       .getLines()
@@ -55,22 +53,19 @@ object Day04 {
       .map(x => new BingoBoard(x.trim.split("\\s+").map(_.toInt).toList))
 
     @tailrec
-    def play(currIdx: Int = 1): Int = {
-      round(boards.toList, numbers.splitAt(currIdx)._1.toList) match {
+    def play(currIdx: Int = 1): Int =
+      round(boards.toList, numbers.splitAt(currIdx)._1.toList) match
         case Some(board) =>
           board.unmarkedSum(numbers.splitAt(currIdx)._1.toList) * numbers(
-            currIdx - 1
+            currIdx - 1,
           )
         case None =>
-          if (currIdx < numbers.length) play(currIdx + 1)
+          if currIdx < numbers.length then play(currIdx + 1)
           else throw new RuntimeException
-      }
-    }
 
     play()
-  }
 
-  def part2(input: String): Int = {
+  def part2(input: String): Int =
     val lines = Source
       .fromFile(INPUT_DIR + input)
       .getLines()
@@ -83,23 +78,17 @@ object Day04 {
       .map(x => new BingoBoard(x.trim.split("\\s+").map(_.toInt).toList))
 
     @tailrec
-    def play(remainingBoards: List[BingoBoard], currIdx: Int = 1): Int = {
-      if (currIdx > numbers.length) throw new RuntimeException
-      round(remainingBoards.toList, numbers.splitAt(currIdx)._1.toList) match {
+    def play(remainingBoards: List[BingoBoard], currIdx: Int = 1): Int =
+      if currIdx > numbers.length then throw new RuntimeException
+      round(remainingBoards.toList, numbers.splitAt(currIdx)._1.toList) match
         case Some(board) =>
-          if (remainingBoards.length == 1)
+          if remainingBoards.length == 1 then
             board.unmarkedSum(numbers.splitAt(currIdx)._1.toList) * numbers(
-              currIdx - 1
+              currIdx - 1,
             )
-          else {
-            play(remainingBoards.filter(_ != board), currIdx)
-          }
+          else play(remainingBoards.filter(_ != board), currIdx)
         case None =>
-          if (currIdx < numbers.length) play(remainingBoards, currIdx + 1)
+          if currIdx < numbers.length then play(remainingBoards, currIdx + 1)
           else throw new RuntimeException
-      }
-    }
 
     play(boards.toList)
-  }
-}

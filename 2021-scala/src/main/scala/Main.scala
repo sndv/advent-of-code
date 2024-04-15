@@ -1,14 +1,4 @@
-object Main extends App {
-
-  def exec(f: (String) => Any, input: String, expected: String = ""): String = {
-    val start = System.currentTimeMillis()
-    val result = s"${f(input)}"
-    val duration = System.currentTimeMillis() - start
-    val incorrect =
-      if (expected != "" && result != expected) " (incorrect!)" else ""
-    f"${result}${incorrect} (${duration.toDouble / 1000}%.3fs)"
-  }
-
+@main def main(): Unit =
   println(s"01-1 ex: ${exec(Day01.part1, "input-ex", "7")}")
   println(s"01-1 in: ${exec(Day01.part1, "input", "1477")}")
   println(s"01-2 ex: ${exec(Day01.part2, "input-ex", "5")}")
@@ -104,4 +94,10 @@ object Main extends App {
 
   println("\nDone.")
 
-}
+def exec(f: (String) => Any, input: String, expected: String = ""): String =
+  val start = System.currentTimeMillis()
+  val result = s"${f(input)}"
+  val duration = System.currentTimeMillis() - start
+  val incorrect =
+    if expected != "" && result != expected then " (incorrect!)" else ""
+  f"${result}${incorrect} (${duration.toDouble / 1000}%.3fs)"

@@ -1,27 +1,26 @@
 import scala.io.Source
 
-object Day08 {
+object Day08:
 
   final private val INPUT_DIR = "input/day08/"
 
-  def part1(input: String): Int = {
+  def part1(input: String): Int =
     Source
       .fromFile(INPUT_DIR + input)
       .getLines()
       .map(_.split(" \\| ")(1))
       .flatMap(_.split(" "))
       .count(c => List(2, 3, 4, 7).contains(c.length))
-  }
 
-  def part2(input: String): Int = {
+  def part2(input: String): Int =
     Source
       .fromFile(INPUT_DIR + input)
       .getLines()
-      .map(x => {
+      .map(x =>
         val sp = x.split(" \\| ")
-        (sp(0), sp(1))
-      })
-      .map(t => {
+        (sp(0), sp(1)),
+      )
+      .map(t =>
         val l = t._1.split(" ").sortBy(_.length)
         val s1 = l(0).toSet
         val s7 = l(1).toSet
@@ -43,10 +42,8 @@ object Day08 {
           s7 -> "7",
           s8 -> "8",
           s9 -> "9",
-          s0 -> "0"
+          s0 -> "0",
         )
-        t._2.split(" ").map(x => m(x.toSet)).reduce(_ + _).toInt
-      })
+        t._2.split(" ").map(x => m(x.toSet)).reduce(_ + _).toInt,
+      )
       .sum
-  }
-}
