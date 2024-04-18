@@ -57,7 +57,7 @@ object Day04:
       round(boards.toList, numbers.splitAt(currIdx)._1.toList) match
         case Some(board) =>
           board.unmarkedSum(numbers.splitAt(currIdx)._1.toList) * numbers(
-            currIdx - 1,
+            currIdx - 1
           )
         case None =>
           if currIdx < numbers.length then play(currIdx + 1)
@@ -84,7 +84,7 @@ object Day04:
         case Some(board) =>
           if remainingBoards.length == 1 then
             board.unmarkedSum(numbers.splitAt(currIdx)._1.toList) * numbers(
-              currIdx - 1,
+              currIdx - 1
             )
           else play(remainingBoards.filter(_ != board), currIdx)
         case None =>

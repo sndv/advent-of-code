@@ -19,7 +19,7 @@ object Day10:
           .replace("()", "")
           .replace("[]", "")
           .replace("{}", "")
-          .replace("<>", ""),
+          .replace("<>", "")
       )
 
   def part1(input: String): Int =
@@ -28,7 +28,7 @@ object Day10:
       .getLines()
       .map(cleanOkBr(_))
       .map(
-        _.flatMap(x => if VALUE_MAP_A.contains(x) then Some(x) else None).mkString,
+        _.flatMap(x => if VALUE_MAP_A.contains(x) then Some(x) else None).mkString
       )
       .filter(_ != "")
       .map(x => VALUE_MAP_A(x(0)))

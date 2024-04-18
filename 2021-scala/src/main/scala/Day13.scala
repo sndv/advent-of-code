@@ -12,12 +12,12 @@ object Day13:
     if foldDir == "x" then
       dots.map(d =>
         if d._1 > foldIdx then (foldIdx - (d._1 - foldIdx), d._2)
-        else d,
+        else d
       )
     else if foldDir == "y" then
       dots.map(d =>
         if d._2 > foldIdx then (d._1, foldIdx - (d._2 - foldIdx))
-        else d,
+        else d
       )
     else throw new RuntimeException
 
@@ -49,7 +49,7 @@ object Day13:
       .map(y =>
         Range(0, codeDots.map(_._1).max + 1)
           .map(x => if codeDots.contains((x, y)) then "#" else " ")
-          .reduce(_ + _),
+          .reduce(_ + _)
       )
       .reduce(_ + "\n" + _)
     "\n" + code + "\n"

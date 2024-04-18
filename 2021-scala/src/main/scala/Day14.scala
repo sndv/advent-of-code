@@ -4,9 +4,7 @@ object Day14:
 
   final private val INPUT_DIR = "input/day14/"
 
-  def parseInput(
-      input: String,
-  ): (String, Map[String, List[String]]) =
+  def parseInput(input: String): (String, Map[String, List[String]]) =
     val lines = Source
       .fromFile(INPUT_DIR + input)
       .getLines()
@@ -18,7 +16,7 @@ object Day14:
       ._2
       .map(l =>
         val sp = l.split(" -> ")
-        (sp(0), List(s"${sp(0)(0)}${sp(1)}", s"${sp(1)}${sp(0)(1)}")),
+        (sp(0), List(s"${sp(0)(0)}${sp(1)}", s"${sp(1)}${sp(0)(1)}"))
       )
       .toMap
     (start, map)
@@ -34,7 +32,7 @@ object Day14:
         s.flatMap(pn => map(pn._1).map((_, pn._2)))
           .groupBy(_._1)
           .mapValues(_.foldLeft(BigInt(0))(_ + _._2))
-          .toList,
+          .toList
       )
       .flatMap(pn => List((pn._1(0), pn._2), (pn._1(1), pn._2)))
       .groupBy(_._1)

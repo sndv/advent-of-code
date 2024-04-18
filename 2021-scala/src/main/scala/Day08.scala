@@ -18,7 +18,7 @@ object Day08:
       .getLines()
       .map(x =>
         val sp = x.split(" \\| ")
-        (sp(0), sp(1)),
+        (sp(0), sp(1))
       )
       .map(t =>
         val l = t._1.split(" ").sortBy(_.length)
@@ -44,6 +44,6 @@ object Day08:
           s9 -> "9",
           s0 -> "0",
         )
-        t._2.split(" ").map(x => m(x.toSet)).reduce(_ + _).toInt,
+        t._2.split(" ").map(x => m(x.toSet)).reduce(_ + _).toInt
       )
       .sum

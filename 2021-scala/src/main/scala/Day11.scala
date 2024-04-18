@@ -56,10 +56,9 @@ object Day11:
       total: Int = 0,
   ): Int =
     if steps == 0 then total
-    else {
+    else
       val (newOctopi, fln) = simulateCycle(octopi, rows, cols)
       passCycles(newOctopi, steps - 1, rows, cols, total + fln)
-    }
 
   @tailrec
   def passUntilSync(

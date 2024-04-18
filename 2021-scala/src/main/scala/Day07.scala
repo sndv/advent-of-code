@@ -38,8 +38,8 @@ object Day07:
         crabs
           .map(c =>
             val steps = (c - t).abs
-            ((steps + 1) * steps) / 2,
+            ((steps + 1) * steps) / 2
           )
-          .sum,
+          .sum
       )
       .min

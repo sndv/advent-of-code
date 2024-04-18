@@ -34,9 +34,9 @@ object Day09:
               && t < cnvInt(el2(2))
               && t < cnvInt(el3(1))
             then t + 1
-            else 0,
+            else 0
           )
-          .sum,
+          .sum
       )
       .sum
 
@@ -88,7 +88,7 @@ object Day09:
       .mkString
     val start = joinedMap.indexOf('0')
     if start == -1 then basins
-    else {
+    else
       val basin =
         findBasin(map, (start / map(0).length, start % map(0).length))
       findAllBasins(
@@ -99,9 +99,8 @@ object Day09:
         ),
         basins :+ basin,
       )
-    }
 
   def part2(input: String): Int =
     findAllBasins(
-      Source.fromFile(INPUT_DIR + input).getLines().toList,
+      Source.fromFile(INPUT_DIR + input).getLines().toList
     ).map(_.size).sorted.reverse.splitAt(3)._1.foldLeft(1)(_ * _)
